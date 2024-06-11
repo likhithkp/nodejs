@@ -1,0 +1,9 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "practice",
+  "main": "index.js",
+  "repository": "https://github.com/likhithkp/nodejs.git",
+  "author": "likhithkp <likhithkpdev@gmail.com>",
+  "license": "MIT"
+}
