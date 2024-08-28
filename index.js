@@ -4,4 +4,3 @@ const getFact = async () => {
 }
 
 const a = getFact();
-console.log(a)
