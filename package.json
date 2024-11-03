@@ -5,9 +5,16 @@
   "repository": "https://github.com/likhithkp/nodejs.git",
   "author": "likhithkp <likhithkpdev@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
   "dependencies": {
-    "axios": "^1.7.7",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "chalk": "^5.3.0",
     "cors": "^2.8.5",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "one-liner-joke": "^1.2.2"
   }
 }
