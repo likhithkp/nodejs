@@ -1,6 +1,9 @@
-const fs = require("fs");
+const http = require("http");
 
-fs.writeFile("hell.txt", "Hello world", (err) => {
-    if (err) console.error(err);
-    else console.log("File created");
+const server = http.createServer((req, res) => {
+    res.end("Hello");
+});
+
+server.listen(3001, () => {
+    console.log("Server running");
 });
