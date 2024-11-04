@@ -1,24 +1,22 @@
 const express = require("express");
 const app = express();
 
-app.use((req, res, next) => {
-    console.log("Middleware trigerred");
-    next();
-});
+app.use(express.json());
+app.use(express({urlencoded: true}));
 
 app.get("/", (req, res) => {
-    res.send("Hello");
+    res.send("Welcome");
 });
 
 app.get("/profile", (req, res, next) => {
-    return next(new Error("Sorry this page is not available for time being!"))
+    return next(new Error("Sorry somthing broke"))
 });
 
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send("Something broke!!");
+    console.error(err);
+    res.status(500).send("Something broke...!");
 });
 
 app.listen(3000, () => {
-    console.log("Server running");
+    console.log("Server listening...");
 });
