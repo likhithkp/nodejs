@@ -1,22 +1,10 @@
-const express = require("express");
-const app = express();
+var http = require("http");
 
-app.use(express.json());
-app.use(express({urlencoded: true}));
+http.createServer((req, res) => {
+    res.writeHead(200, {
+        'Content-type' : 'text/plain'
+    });
+    res.end('Hello')
+}).listen(3000);
 
-app.get("/", (req, res) => {
-    res.send("Welcome");
-});
-
-app.get("/profile", (req, res, next) => {
-    return next(new Error("Sorry somthing broke"))
-});
-
-app.use((err, req, res, next) => {
-    console.error(err);
-    res.status(500).send("Something broke...!");
-});
-
-app.listen(3000, () => {
-    console.log("Server listening...");
-});
+console.log('Server running on 3000')
