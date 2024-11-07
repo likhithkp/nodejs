@@ -1,10 +1,10 @@
-var http = require("http");
+const express = require("express");
+const app = express();
 
-http.createServer((req, res) => {
-    res.writeHead(200, {
-        'Content-type' : 'text/plain'
-    });
-    res.end('Hello')
-}).listen(3000);
+app.get("/", (req, res) => {
+    res.send("Hello").status(200);
+});
 
-console.log('Server running on 3000')
+app.listen(3001, () => {
+    console.log("Server running...!");
+});
