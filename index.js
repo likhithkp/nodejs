@@ -1,26 +1,43 @@
+const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
-const path = require("path")
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(cookieParser());
 
-app.set("view engine", "ejs");
-
-app.get("/", (req, res) => {
-    res.send("Welcome");
+app.get("/", (_, res) => {
+    res.cookie("name", "likhithkp");
+    res.send("Hello");
 });
 
-app.get("/home", (req, res) => {
-    res.render("index");
+app.get("/passwd", (_, res) => {
+    bcrypt.genSalt(10, (_, salt) => {
+        bcrypt.hash("likhithkp1234", salt, (_, hash) => {
+            console.log(hash)
+            res.cookie("password", hash);
+            res.send("Successfully pswd set...");
+        });
+    });
 });
 
-app.get("/profile/:username", (req, res) => {
-    const {username} = req.params;
-    res.send(`Welcome ${username}`);
+app.get("/verify", (_, _) => {
+    bcrypt.compare("likhithkp1234", "$2b$10$foqyDYroDSUI2bV2AnSPKOp2JhPSsLo.ErLatG4UuclHXDjZ6OwGG", (_, result) => {
+        console.log(result);
+    });
 });
 
-app.listen(3003, () => {
-    console.log("Server running");
+app.get("/jwt", (_, res) => {
+    let token = jwt.sign({email : "likhithkpdev@gmail.com"}, "secretKey");
+    res.cookie("jwtToken", token);
+    res.send("JWT signed...");
+});
+
+app.get("/jwtVerify", (req, res) => {
+    let verify = jwt.verify(req.cookies.jwtToken, "secretKey");
+    res.send(verify);
+});
+
+app.listen(3000, () => {
+    console.log("Server listening...");
 });
