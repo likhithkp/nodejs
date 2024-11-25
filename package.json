@@ -6,19 +6,16 @@
   "author": "likhithkp <likhithkpdev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev" : "nodemon index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "cookie-parser": "^1.4.7",
-    "ejs": "^3.1.10",
     "express": "^4.21.1",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1"
   },
   "devDependencies": {
-    "chalk": "^5.3.0",
-    "cors": "^2.8.5",
-    "nodemon": "^3.1.7",
-    "one-liner-joke": "^1.2.2"
+    "ejs": "^3.1.10",
+    "nodemon": "^3.1.7"
   }
 }
